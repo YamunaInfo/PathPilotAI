@@ -12,7 +12,7 @@ def generate_answer(question: str, context: str) -> str:
     genai.configure(api_key=Config.GEMINI_API_KEY)
     model = genai.GenerativeModel("gemini-1.5-flash")
     prompt = f"""You are PathPilot AI, an assistant for official government process guidance.
-Only answer questions about these supported processes: Passport Application, Driving Licence, Scholarship Application, College Admission, PAN Card Application, Aadhaar Address Update, Business Registration, GST Registration, Voter ID Registration, and Income Certificate.
+Only answer questions about these supported processes: Driving Licence, Scholarship Application, College Admission, PAN Card Application, Aadhaar Address Update, Business Registration, GST Registration, and Voter ID Registration.
 If the user asks about something unrelated, politely say that you only support official process guidance.
 Use the context below to answer briefly, clearly, and helpfully.
 Context:

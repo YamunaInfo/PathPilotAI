@@ -1,17 +1,4 @@
 const processDetails = {
-  passport: {
-    title: 'Passport Application',
-    description: 'Navigate the passport application journey with an AI-guided overview of eligibility, documents, steps, and common mistakes.',
-    officialUrl: 'https://portal3.passportindia.gov.in/AppOnlineProject/user/registrationBaseAction?request_locale=en',
-    eligibility: ['Indian citizens aged 18 and above can apply', 'Minors need guardian consent and supporting documents'],
-    documents: ['Proof of identity', 'Proof of address', 'Date of birth proof', 'Passport-size photographs'],
-    timeline: ['Gather identity, address, and birth proof documents', 'Fill and verify the application form online', 'Schedule an appointment and pay the fee', 'Submit biometrics and collect the acknowledgement'],
-    faqs: [
-      { question: 'How long does it take?', answer: 'Processing typically takes a few weeks depending on the service type and location.' },
-      { question: 'Can I apply online?', answer: 'Yes, most applicants can begin the process online and book an appointment.' },
-    ],
-    mistakes: ['Uploading unclear photos', 'Entering mismatched names and dates of birth', 'Skipping the appointment confirmation'],
-  },
   'driving-licence': {
     title: 'Driving Licence',
     description: 'Understand the basics for learner licences, driving tests, and licence renewals.',
@@ -93,17 +80,7 @@ const processDetails = {
     timeline: ['Fill the application', 'Upload documents', 'Submit form', 'Track status'],
     faqs: [{ question: 'Can I update my address?', answer: 'Yes, address changes can often be requested through a separate update flow.' }],
     mistakes: ['Submitting duplicate applications', 'Using outdated address proof'],
-  },
-  'income-certificate': {
-    title: 'Income Certificate',
-    description: 'Prepare the supporting documents and understand the request flow for income verification.',
-    officialUrl: 'https://www.india.gov.in/',
-    eligibility: ['Applicant must be able to prove income and residence'],
-    documents: ['Income proof', 'Residence proof', 'Identity proof', 'Recent salary slips or records'],
-    timeline: ['Gather income records', 'Apply through the relevant office', 'Submit documents', 'Receive the certificate'],
-    faqs: [{ question: 'How long is it valid?', answer: 'Validity may depend on the issuing authority and local rules.' }],
-    mistakes: ['Using old income documentation', 'Forgetting to sign the form'],
-  },
+  }
 };
 
 function renderProcessDetails(processId) {
@@ -211,7 +188,7 @@ async function loadProcessDetails(processId) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const selectedId = localStorage.getItem('selectedProcessId') || 'passport';
+  const selectedId = localStorage.getItem('selectedProcessId') || 'driving-licence';
   loadProcessDetails(selectedId);
 
   document.getElementById('backBtn')?.addEventListener('click', () => {

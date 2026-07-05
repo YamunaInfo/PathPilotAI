@@ -1,12 +1,5 @@
 const processCatalog = [
   {
-    id: 'passport',
-    title: 'Passport Application',
-    description: 'Get guidance for new passport applications, renewals, and emergency travel documents.',
-    officialUrl: 'https://portal3.passportindia.gov.in/AppOnlineProject/user/registrationBaseAction?request_locale=en',
-    icon: 'fa-passport',
-  },
-  {
     id: 'driving-licence',
     title: 'Driving Licence',
     description: 'Understand learner and permanent licence requirements with document-ready steps.',
@@ -31,7 +24,7 @@ const processCatalog = [
     id: 'pan',
     title: 'PAN Card Application',
     description: 'Review forms, identity proofs, and important submission notes.',
-    officialUrl: 'https://www.onlineservices.nsdl.com/paam/endUserRegisterContact.html',
+    officialUrl: 'https://www.tin-nsdl.com',
     icon: 'fa-id-card',
   },
   {
@@ -61,13 +54,6 @@ const processCatalog = [
     description: 'Learn about proof of identity and address requirements before you apply.',
     officialUrl: 'https://voters.eci.gov.in/',
     icon: 'fa-vote-yea',
-  },
-  {
-    id: 'income-certificate',
-    title: 'Income Certificate',
-    description: 'Gather the supporting records needed for income verification requests.',
-    officialUrl: 'https://www.india.gov.in/',
-    icon: 'fa-file-invoice-dollar',
   },
 ];
 
@@ -124,12 +110,11 @@ function renderProcessCards(processes = processCatalog, filter = '') {
     });
   });
   grid.querySelectorAll('.register-now').forEach((button) => {
-    button.addEventListener('click', (e) => {
+    button.addEventListener('click', () => {
       const id = button.dataset.id;
-      const proc = processCatalog.find((p) => p.id === id);
-      if (proc && proc.officialUrl) {
-        // redirect in the same tab to official registration URL
-        window.location.href = proc.officialUrl;
+      const proc = filtered.find((item) => item.id === id) || processCatalog.find((item) => item.id === id);
+      if (proc?.officialUrl) {
+        window.open(proc.officialUrl, '_blank', 'noopener,noreferrer');
       } else {
         showToast('Official registration link not available for this process.');
       }
@@ -184,6 +169,7 @@ async function loadProcesses() {
     const payload = await apiRequest('/api/processes');
     const backendProcesses = payload.processes || payload.data?.processes || [];
     const processes = normalizeProcessList(backendProcesses);
+    window.__pathpilotProcesses = processes;
     renderProcessCards(processes);
     renderRecentProcesses(processes);
   } catch (error) {
@@ -199,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const searchInput = document.getElementById('searchInput');
   searchInput?.addEventListener('input', (event) => {
-    const currentProcesses = normalizeProcessList((window.__pathpilotProcesses || processCatalog));
+    const currentProcesses = window.__pathpilotProcesses || processCatalog;
     renderProcessCards(currentProcesses, event.target.value);
   });
 

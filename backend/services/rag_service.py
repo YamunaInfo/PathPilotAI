@@ -37,11 +37,11 @@ def build_answer(question: str) -> str:
         return "Please provide a question about the supported government processes."
 
     supported_terms = [
-        "passport", "driving", "licence", "scholarship", "college", "admission", "pan",
-        "aadhaar", "business", "gst", "voter", "income certificate", "certificate"
+        "driving", "licence", "scholarship", "college", "admission", "pan",
+        "aadhaar", "business", "gst", "voter"
     ]
     if not any(term in question.lower() for term in supported_terms):
-        return "I can help with official process guidance for the supported government services only. Please ask about a supported process such as passport, driving licence, scholarship, college admission, PAN card, Aadhaar update, business registration, GST registration, voter ID, or income certificate."
+        return "I can help with official process guidance for the supported government services only. Please ask about a supported process such as driving licence, scholarship, college admission, PAN card, Aadhaar update, business registration, GST registration, or voter ID."
 
     try:
         seed_vector_store()
@@ -64,9 +64,10 @@ def build_answer(question: str) -> str:
             logger.exception("Gemini answer generation failed: %s", exc)
 
     if not context_text:
-        return "I can help with official process guidance for the supported services. Please ask about a specific process such as passport, driving licence, scholarship, college admission, PAN card, Aadhaar update, business registration, GST registration, voter ID, or income certificate."
+        return "I can help with official process guidance for the supported services. Please ask about a specific process such as driving licence, scholarship, college admission, PAN card, Aadhaar update, business registration, GST registration, or voter ID."
 
     return (
-        "Based on the available process guidance, here is a concise answer: "
-        f"{question}. Please review the official portal for the latest requirements and timelines."
+        "I’m currently using the local process guidance for this demo. "
+        "A real Gemini response is not available yet because the backend is missing a valid API key. "
+        f"For now, here is a helpful summary: {question}. Please review the official portal for the latest requirements and timelines."
     )

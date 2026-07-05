@@ -6,19 +6,6 @@ logger = logging.getLogger(__name__)
 
 PROCESS_SEED_DATA = [
     {
-        "name": "Passport Application",
-        "description": "Guidance for new passport applications, renewals, and related procedures.",
-        "eligibility": ["Indian citizens aged 18 and above can apply", "Minors need guardian consent and supporting documents"],
-        "requiredDocuments": ["Proof of identity", "Proof of address", "Date of birth proof", "Passport-size photographs"],
-        "applicationSteps": ["Gather identity, address, and birth proof documents", "Fill and verify the application form online", "Schedule an appointment and pay the fee", "Submit biometrics and collect the acknowledgement"],
-        "faqs": [
-            {"question": "How long does it take?", "answer": "Processing usually takes a few weeks depending on the service type and location."},
-            {"question": "Can I apply online?", "answer": "Yes, most applicants can begin the process online and book an appointment."},
-        ],
-        "officialWebsite": "https://portal3.passportindia.gov.in/AppOnlineProject/user/registrationBaseAction?request_locale=en",
-        "estimatedProcessingTime": "2-4 weeks",
-    },
-    {
         "name": "Driving Licence",
         "description": "Understand learner and permanent licence requirements with document-ready steps.",
         "eligibility": ["Applicant must meet age and medical requirements", "Learner licence requires a valid application and fee"],
@@ -98,16 +85,6 @@ PROCESS_SEED_DATA = [
         "officialWebsite": "https://voters.eci.gov.in/",
         "estimatedProcessingTime": "2-4 weeks",
     },
-    {
-        "name": "Income Certificate",
-        "description": "Gather the supporting records needed for income verification requests.",
-        "eligibility": ["Applicant must be able to prove income and residence"],
-        "requiredDocuments": ["Income proof", "Residence proof", "Identity proof", "Recent salary slips or records"],
-        "applicationSteps": ["Gather income records", "Apply through the relevant office", "Submit documents", "Receive the certificate"],
-        "faqs": [{"question": "How long is it valid?", "answer": "Validity may depend on the issuing authority and local rules."}],
-        "officialWebsite": "https://www.india.gov.in/",
-        "estimatedProcessingTime": "3-10 days",
-    },
 ]
 
 
@@ -115,8 +92,22 @@ def ensure_seed_data():
     processes = get_collection("processes")
     if processes is None:
         return []
-    if processes.count_documents({}) == 0:
+
+    seed_names = {seed["name"].strip().lower(): seed for seed in PROCESS_SEED_DATA}
+    existing = list(processes.find({}))
+    if not existing:
         processes.insert_many(PROCESS_SEED_DATA)
+        return list(processes.find({}))
+
+    for doc in existing:
+        name = str(doc.get("name", "")).strip().lower()
+        if name not in seed_names:
+            processes.delete_one({"_id": doc.get("_id")})
+
+    for seed in PROCESS_SEED_DATA:
+        if not processes.find_one({"name": seed["name"]}):
+            processes.insert_one(seed)
+
     return list(processes.find({}))
 
 
@@ -153,7 +144,6 @@ def slugify(value: str) -> str:
 
 def canonical_process_ids(name: str):
     aliases = {
-        "Passport Application": ["passport", "passport-application"],
         "Driving Licence": ["driving-licence", "driving-license"],
         "Scholarship Application": ["scholarship", "scholarship-application"],
         "College Admission": ["college-admission", "college-admission-application"],
@@ -162,7 +152,6 @@ def canonical_process_ids(name: str):
         "Business Registration": ["business", "business-registration"],
         "GST Registration": ["gst", "gst-registration"],
         "Voter ID Registration": ["voter-id", "voter-id-registration"],
-        "Income Certificate": ["income-certificate", "income-certificate-application"],
     }
     return aliases.get(name, [slugify(name)])
 
