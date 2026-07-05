@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | PathPilot AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+  </head>
+  <body>
+    <header class="topbar glass-card">
+      <a href="dashboard.html" class="brand">
+        <div class="brand-bubble"><i class="fas fa-compass"></i></div>
+        <div>
+          <strong>PathPilot AI</strong>
+          <span>Process & Document Intelligence</span>
+        </div>
+      </a>
+      <nav class="topnav">
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="chat.html">AI Assistant</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="toggle theme"><i class="fas fa-moon"></i></button>
+        <a href="profile.html" class="profile-pill">Profile</a>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="hero-card glass-card">
+        <div>
+          <p class="eyebrow">Good morning</p>
+          <h1 id="welcomeName">Welcome back</h1>
+          <p>Find the process, gather the documents, and move forward with clarity.</p>
+        </div>
+        <div class="hero-search">
+          <i class="fas fa-search"></i>
+          <input id="searchInput" type="text" placeholder="Search processes, documents, FAQs" />
+        </div>
+      </section>
+
+      <section class="dashboard-grid">
+        <div class="main-column">
+          <div class="panel glass-card">
+            <div class="panel-head">
+              <div>
+                <h2>Popular Processes</h2>
+                <p>Guided support across key government and institutional workflows.</p>
+              </div>
+            </div>
+            <div id="processGrid" class="process-grid"></div>
+          </div>
+
+          <div class="panel glass-card">
+            <div class="panel-head">
+              <div>
+                <h2>Recent Processes</h2>
+                <p>Pick up where you left off.</p>
+              </div>
+            </div>
+            <div id="recentList" class="recent-list"></div>
+          </div>
+        </div>
+
+        <aside class="side-column">
+          <div class="panel glass-card quick-card">
+            <div class="panel-head">
+              <div>
+                <h2>Quick AI Assistant</h2>
+                <p>Ask anything about documents, eligibility, or next steps.</p>
+              </div>
+            </div>
+            <div class="assistant-actions">
+              <button class="assistant-chip" data-prompt="What documents are required?">Documents</button>
+              <button class="assistant-chip" data-prompt="Am I eligible?">Eligibility</button>
+              <button class="assistant-chip" data-prompt="Where should I apply?">Application Venue</button>
+            </div>
+            <a href="chat.html" class="btn btn-primary btn-block">Open Assistant</a>
+          </div>
+
+          <div class="panel glass-card profile-shortcut">
+            <div class="profile-pill-card">
+              <div class="avatar">P</div>
+              <div>
+                <strong id="profileShortName">Your Profile</strong>
+                <p id="profileShortRole">Continue personalizing your experience.</p>
+              </div>
+            </div>
+            <a href="profile.html" class="text-link">Edit profile</a>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <div id="loader" class="loader-overlay">
+      <div class="spinner"></div>
+    </div>
+    <div id="toast"></div>
+
+    <script src="js/app.js"></script>
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Process Details | PathPilot AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/process.css" />
+  </head>
+  <body>
+    <header class="topbar glass-card">
+      <a href="dashboard.html" class="brand">
+        <div class="brand-bubble"><i class="fas fa-compass"></i></div>
+        <div>
+          <strong>PathPilot AI</strong>
+          <span>Process & Document Intelligence</span>
+        </div>
+      </a>
+      <nav class="topnav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="chat.html">AI Assistant</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <button id="backBtn" class="back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+      <section class="process-hero glass-card">
+        <div class="process-hero-content">
+          <p class="eyebrow">Official Process Guide</p>
+          <h1 id="processTitle">Loading process...</h1>
+          <p id="processDescription"></p>
+          <div class="hero-actions">
+            <button id="askAiBtn" class="btn btn-primary">Ask AI</button>
+            <a id="officialLink" class="btn btn-secondary" href="#" target="_blank" rel="noopener noreferrer">Visit Official Website</a>
+            <a id="backupLink" class="btn btn-secondary" href="#" target="_blank" rel="noopener noreferrer" style="display:none">Open Archive / Cached</a>
+          </div>
+          <div id="linkStatus" class="link-status" aria-live="polite" style="margin-top:0.6rem;color:var(--muted);font-size:0.95rem"></div>
+        </div>
+      </section>
+
+      <section class="details-grid">
+        <div class="glass-card detail-card">
+          <h3><i class="fas fa-user-check"></i> Eligibility</h3>
+          <ul id="eligibilityList"></ul>
+        </div>
+        <div class="glass-card detail-card">
+          <h3><i class="fas fa-file-alt"></i> Required Documents</h3>
+          <ul id="documentsList"></ul>
+        </div>
+        <div class="glass-card detail-card full-width">
+          <h3><i class="fas fa-clock"></i> Step-by-Step Timeline</h3>
+          <div id="timelineList" class="timeline"></div>
+        </div>
+        <div class="glass-card detail-card">
+          <h3><i class="fas fa-circle-question"></i> FAQs</h3>
+          <div id="faqList" class="faq-list"></div>
+        </div>
+        <div class="glass-card detail-card">
+          <h3><i class="fas fa-triangle-exclamation"></i> Common Mistakes</h3>
+          <ul id="mistakesList"></ul>
+        </div>
+      </section>
+    </main>
+
+    <div id="loader" class="loader-overlay">
+      <div class="spinner"></div>
+    </div>
+    <div id="toast"></div>
+
+    <script src="js/app.js"></script>
+    <script src="js/process.js"></script>
+  </body>
+</html>

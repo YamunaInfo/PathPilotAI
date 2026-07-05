@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | PathPilot AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+  <body>
+    <main class="auth-shell">
+      <section class="auth-hero">
+        <div class="hero-badge">AI Process Navigator</div>
+        <h1>Welcome back to PathPilot AI</h1>
+        <p>Move from uncertainty to clarity with AI-guided government and institutional workflows.</p>
+        <div class="hero-list">
+          <div><i class="fas fa-check-circle"></i> Intelligent eligibility insights</div>
+          <div><i class="fas fa-check-circle"></i> Document checklists and timelines</div>
+          <div><i class="fas fa-check-circle"></i> Guided assistance for every step</div>
+        </div>
+      </section>
+
+      <section class="auth-card">
+        <div class="card-head">
+          <h2>Sign In</h2>
+          <p>Access your personalized process dashboard.</p>
+        </div>
+
+        <form id="loginForm" class="auth-form">
+          <label>
+            Email
+            <input type="email" id="email" placeholder="you@example.com" required />
+          </label>
+          <label>
+            Password
+            <input type="password" id="password" placeholder="Enter your password" required />
+          </label>
+          <div class="form-row">
+            <label class="checkbox-row">
+              <input type="checkbox" id="rememberMe" />
+              <span>Remember me</span>
+            </label>
+            <a href="#" class="text-link">Forgot Password?</a>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+
+        <div class="auth-footer">
+          <span>Don’t have an account?</span>
+          <a href="register.html" class="text-link">Register</a>
+        </div>
+      </section>
+    </main>
+
+    <div id="loader" class="loader-overlay">
+      <div class="spinner"></div>
+    </div>
+    <div id="toast"></div>
+
+    <script src="js/app.js"></script>
+    <script src="js/login.js"></script>
+  </body>
+</html>
