@@ -45,35 +45,35 @@ Feature	Description
                    │
       ┌────────────┼─────────────┐
       ▼            ▼             ▼
-   MongoDB      ChromaDB     Gemini API
+    MongoDB      ChromaDB     Gemini API
       │            │             │
       └────────────┼─────────────┘
                    ▼
            AI Response to User
            
-⚙️ Project Workflow
-User
-   │
-   ▼
-Select Process
-   │
-   ▼
-Flask Backend
-   │
-   ▼
-MongoDB → Process Details
-   │
-   ▼
-ChromaDB → Retrieve Context
-   │
-   ▼
-Google Gemini
-   │
-   ▼
-AI Response
-   │
-   ▼
-Display to User
+         ⚙️ Project Workflow
+                 User
+                  │
+                  ▼
+            Select Process
+                  │
+                  ▼
+            Flask Backend
+                  │
+                  ▼
+       MongoDB → Process Details
+                 │
+                 ▼
+      ChromaDB → Retrieve Context
+                 │
+                 ▼
+           Google Gemini
+                 │
+                 ▼
+            AI Response
+                 │
+                 ▼
+           Display to User
 
 🧠 AI Workflow
 User Question
