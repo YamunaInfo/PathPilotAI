@@ -38,7 +38,7 @@ PathPilot AI is an AI-powered Process and Document Intelligence Assistant that h
                   User
                    │
                    ▼
-        HTML • CSS • JavaScript
+               React.js
                    │
                    ▼
              Python Flask API
